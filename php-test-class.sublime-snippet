@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+namespace ${1:namespace};
+ 
+/**
+ * @package    ${1:namespace}
+ */
+class ${TM_FILENAME/(.+)\..+|.*/$1/:name} extends \PHPUnit_Framework_TestCase
+{
+    ${0}
+}
+ 
+]]></content>
+    <tabTrigger>php-test-class</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

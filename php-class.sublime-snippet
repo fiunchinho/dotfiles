@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+namespace ${1:namespace};
+ 
+/**
+ * @package    ${1:namespace}
+ */
+class ${TM_FILENAME/(.+)\..+|.*/$1/:name}
+{
+    ${0}
+}
+ 
+]]></content>
+    <tabTrigger>php-class</tabTrigger>
+    <scope>source.php</scope>
+</snippet>
