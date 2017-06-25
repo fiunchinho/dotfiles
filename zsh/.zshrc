@@ -5,16 +5,15 @@ export ZSH=/Users/jose.armesto/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="fiunchinho"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git brew sublime extract autojump colored-man zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git brew sublime extract autojump zsh-autosuggestions)
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 ######################
 # User configuration #
@@ -24,30 +23,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="stt"
 
 docker-rmi() {
@@ -57,6 +36,21 @@ docker-rmi() {
 
 dexec() { docker exec -it $1 /bin/sh }
 
+ddebug() {
+    docker run -t --pid=container:$1 \
+      --net=container:$1 \
+      --cap-add sys_admin \
+      --cap-add sys_ptrace \
+      alpine sh
+}
+
+gclone() {
+    repo=${1#(git@|https://)}
+    repo=${repo%".git"}
+    repo="${repo/://}"
+    take "$HOME/dev/go/src/$repo"
+    git clone $1 .
+}
 
 # https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
 setopt interactivecomments
@@ -69,8 +63,17 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
+export GOPATH="$HOME/dev/go"
+export PATH="/usr/local/opt/php71/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
 
-# if you wish to swap the PHP you use on the command line, you should add the following to ~/.bashrc, ~/.zshrc, ~/.profile or your shell's equivalent configuration file
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+#_schip_kubeconfigs=($(find ~/.kube -name kubeconfig -type f) ~/.kube/config)
+#KUBECONFIG="$(IFS=':'; echo "${_schip_kubeconfigs[*]}")"
+#export KUBECONFIG
 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ $ZSH_EVAL_CONTEXT == 'file' ]] || [[ $ZSH_EVAL_CONTEXT == 'filecode' ]]; then
+    source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
