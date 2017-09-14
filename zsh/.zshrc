@@ -48,7 +48,7 @@ gclone() {
     repo=${1#(git@|https://)}
     repo=${repo%".git"}
     repo="${repo/://}"
-    take "$HOME/dev/go/src/$repo"
+    take "${GOPATH}/src/$repo"
     git clone $1 .
 }
 
