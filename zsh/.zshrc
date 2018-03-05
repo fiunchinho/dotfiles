@@ -11,7 +11,7 @@ ZSH_THEME="fiunchinho"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git brew sublime extract autojump zsh-autosuggestions)
+plugins=(git brew sublime extract autojump zsh-autosuggestions you-should-use kubectl)
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
@@ -28,11 +28,12 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias vim="stt"
-
+alias ll="ls -lah"
 docker-rmi() {
     docker ps -a | grep $1 | awk '{print $1}' | xargs docker rm
     docker rmi $1
 }
+alias idea="open -a IntelliJ\ IDEA $1"
 
 dexec() { docker exec -it $1 /bin/sh }
 
@@ -50,6 +51,8 @@ gclone() {
     repo="${repo/://}"
     take "${GOPATH}/src/$repo"
     git clone $1 .
+    [[ -f "build.gradle" ]] && ./gradlew build
+    [[ -f "composer.json" ]] && composer install
 }
 
 # https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
@@ -77,3 +80,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if [[ $ZSH_EVAL_CONTEXT == 'file' ]] || [[ $ZSH_EVAL_CONTEXT == 'filecode' ]]; then
     source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+# https://github.com/jonmosco/kube-ps1
+KUBE_PS1_SUFFIX=') '
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PROMPT='$(kube_ps1)'$PROMPT
