@@ -11,7 +11,7 @@ ZSH_THEME="fiunchinho"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git sublime extract kubectl zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git extract zsh-autosuggestions zsh-syntax-highlighting)
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
@@ -29,7 +29,7 @@ source $ZSH/oh-my-zsh.sh
 source "${HOME}/.iterm2_shell_integration.zsh"
 
 # AutoJump
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+. /usr/local/etc/profile.d/autojump.sh
 
 # https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
 setopt interactivecomments
@@ -49,7 +49,8 @@ PROMPT='$(kube_ps1)'$PROMPT
 
 # Required for jenv (managing different java versions)
 export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+eval "$(jenv init - --no-rehash)"
+(jenv rehash &) 2> /dev/null
 
 # Make Kubernetes use sublime text to edit resources
 export KUBE_EDITOR="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
