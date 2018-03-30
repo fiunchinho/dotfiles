@@ -59,7 +59,6 @@ export KUBE_EDITOR="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/s
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias ll="ls -lah"
 alias idea="open -a IntelliJ\ IDEA $1"
 
 dexec() { docker exec -it $1 /bin/sh }
