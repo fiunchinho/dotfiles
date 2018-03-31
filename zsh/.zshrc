@@ -11,19 +11,20 @@ ZSH_THEME="fiunchinho"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git extract zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git extract zsh-autosuggestions zsh-syntax-highlighting alias-tips)
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 ######################
 # User configuration #
 ######################
-export GOPATH="$HOME/dev/go"
+export GOPATH="$HOME/dev"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/php71/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
+export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=1
 
 source $ZSH/oh-my-zsh.sh
 source "${HOME}/.iterm2_shell_integration.zsh"
@@ -43,7 +44,9 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
 # https://github.com/jonmosco/kube-ps1
+#KUBE_PS1_PREFIX=''
 KUBE_PS1_SUFFIX=') '
+KUBE_PS1_SYMBOL_ENABLE=false
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PROMPT='$(kube_ps1)'$PROMPT
 
