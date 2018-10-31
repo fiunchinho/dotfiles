@@ -44,11 +44,14 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
 # https://github.com/jonmosco/kube-ps1
-#KUBE_PS1_PREFIX=''
-KUBE_PS1_SUFFIX=') '
+KUBE_PS1_PREFIX=''
+KUBE_PS1_SUFFIX=''
 KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_CTX_COLOR='blue'
+KUBE_PS1_NS_COLOR='yellow'
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PROMPT='$(kube_ps1)'$PROMPT
+MY_KUBE_PS1="%{$fg_bold[blue]%}[%{$reset_color%}"'$(kube_ps1)'"%{$fg_bold[blue]%}]%{$reset_color%} "
+PROMPT=$PROMPT$MY_KUBE_PS1
 
 # Required for jenv (managing different java versions)
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -56,7 +59,7 @@ eval "$(jenv init - --no-rehash)"
 (jenv rehash &) 2> /dev/null
 
 # Make Kubernetes use sublime text to edit resources
-export KUBE_EDITOR="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+export KUBE_EDITOR="vim"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -84,4 +87,11 @@ gclone() {
     [[ -f "build.gradle" ]] && ./gradlew assemble
     [[ -f "composer.json" ]] && composer install
     [[ -f "package.json" ]] && npm install
+}
+
+export HISTFILE=~/.zsh_history  # ensure history file visibility
+export HH_CONFIG=hicolor        # get more colors
+bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
+prompt_dir () {
+    prompt_segment blue black '~'
 }
