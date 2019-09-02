@@ -1,21 +1,19 @@
+tap "adoptopenjdk/openjdk"
 tap "beeftornado/rmtree"
-tap "blendle/blendle"
-tap "boz/repo"
+tap "blendle/blendle" tap "boz/repo"
 tap "buo/cask-upgrade"
+tap "codeship/taps"
+tap "gobuffalo/tap"
+tap "golangci/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/php"
-tap "homebrew/versions"
-tap "jenkins-x/jx"
-cask "java"
+cask "adoptopenjdk8"
 # Java build tool
 brew "ant"
 # SSL/TLS cryptography library
 brew "openssl"
-# GNU internationalization (i18n) and localization (l10n) library
-brew "gettext", link: true
 # Command-line interface for SQLite
 brew "sqlite"
 # Interpreted, interactive, object-oriented programming language
@@ -30,10 +28,18 @@ brew "autojump"
 brew "automake"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Simple command-line tool to read AWS CloudWatch logs
-brew "awslogs"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Friendly powerful distributed version control system
+brew "bazaar"
+# Library for manipulating PNG images
+brew "libpng"
+# Software library to render fonts
+brew "freetype"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext", link: true
 # Like cat but displays content with syntax highlighting
 brew "ccat"
 # Generic library support script
@@ -48,12 +54,12 @@ brew "cmatrix"
 brew "composer"
 # Collection of tools for managing UNIX services
 brew "daemontools"
-# Go dependency management tool
-brew "dep"
 # Tools for building TCP client-server applications
 brew "ucspi-tcp"
 # D.J. Bernstein's DNS tools
 brew "djbdns"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
 # YAML Parser
 brew "libyaml"
 # Isolated development environments using Docker
@@ -68,38 +74,38 @@ brew "x264"
 brew "xvid"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# Library for manipulating PNG images
-brew "libpng"
-# Software library to render fonts
-brew "freetype"
+# WebDriver <-> Marionette proxy
+brew "geckodriver"
 # Distributed revision control system
 brew "git"
 # Common error values for all GnuPG components
 brew "libgpg-error"
 # X.509 and CMS library
 brew "libksba"
+# Passphrase entry dialog utilizing the Assuan protocol
+brew "pinentry"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
 # Bash-tool to store the private data inside a git repo
 brew "git-secret"
 # Generate files and directories from templates in a git repo
 brew "giter8"
-# Simplified Go project management, dependency management, and vendoring
-brew "glide"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
+# Go programming environment (1.10)
+brew "go@1.10"
 # Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "gradle"
-# Command-line client for the cloud PaaS
-brew "heroku"
 # Bash and zsh history suggest box
-brew "hh"
+brew "hstr"
 # Improved top (interactive process viewer)
 brew "htop"
+# Add GitHub support to git on the command-line
+brew "hub"
 # Configurable static site generator
 brew "hugo"
 # Improved colored diff
 brew "icdiff"
-# Manage your Java environment
-brew "jenv"
 # Json incremental digger
 brew "jid"
 # Load testing and performance measurement application
@@ -115,11 +121,13 @@ brew "kops"
 # Kubernetes prompt info for bash and zsh
 brew "kube-ps1"
 # Tool that can switch between kubectl contexts easily and create aliases
-brew "kubectx", args: ["with-short-names"]
+brew "kubectx"
 # The Kubernetes package manager
 brew "kubernetes-helm"
 # GNOME XML library
 brew "libxml2"
+# Mac App Store command-line interface
+brew "mas"
 # Java-based project management
 brew "maven"
 # Command-line based markdown presentation tool
@@ -148,10 +156,12 @@ brew "pipenv"
 brew "postgresql"
 # Show ps output as a tree
 brew "pstree"
-# Build tool for Scala projects
-brew "sbt"
+# Command-line YAML and XML processor that wraps jq
+brew "python-yq"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Easy and Repeatable Kubernetes Development
+brew "skaffold"
 # Command-line client for Travis CI
 brew "travis"
 # Extract, view, and test RAR archives
@@ -162,57 +172,66 @@ brew "watch"
 brew "wget"
 # HTTP benchmarking tool
 brew "wrk"
+# JavaScript package manager
+brew "yarn"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 brew "beeftornado/rmtree/brew-rmtree"
 # Quick Kubernetes Namespace and Context Switchers
-brew "blendle/blendle/kns"
+brew "blendle/blendle/kns", link: false
 # kubernetes tail - pod log viewer
 brew "boz/repo/kail"
+# A Go web development eco-system, designed to make your life easier.
+brew "gobuffalo/tap/buffalo"
 # A tool to install and interact with Jenkins X on your Kubernetes cluster.
-brew "jenkins-x/jx/jx"
 cask "1password"
 cask "adobe-acrobat-reader"
-cask "android-file-transfer"
 cask "applepi-baker"
-cask "atom"
+cask "betterzip"
+cask "caffeine"
 cask "disk-inventory-x"
 cask "evernote"
+cask "firefox"
 cask "fly"
 cask "flycut"
-cask "franz"
-cask "gimp"
 cask "gitter"
 cask "google-cloud-sdk"
-cask "gpgtools"
+cask "gpg-suite"
 cask "imageoptim"
-cask "importio"
-cask "intellij-idea"
-cask "intellij-idea-ce"
 cask "iterm2"
 cask "itsycal"
-cask "java9"
+cask "java"
+cask "karabiner-elements"
 cask "keybase"
 cask "licecap"
 cask "minikube"
 cask "minishift"
-cask "phpstorm"
+cask "obs"
 cask "postman"
-cask "pycharm-ce"
 cask "qlmarkdown"
+cask "qlvideo"
 cask "rambox"
 cask "screenflow"
-cask "screenhero"
 cask "shortcuts"
 cask "slack"
 cask "soda-player"
 cask "spectacle"
+cask "spotify"
 cask "steam"
+cask "sublime-text"
 cask "transmission"
+cask "tunnelblick"
 cask "vagrant"
 cask "vagrant-manager"
 cask "vassal"
 cask "virtualbox"
+cask "vlc"
 cask "wireshark"
+cask "zoomus"
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Monosnap", id: 540348655
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
