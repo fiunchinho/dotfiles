@@ -22,7 +22,7 @@
 	contributors = shortlog --summary --numbered
 	gone = "!git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
 [core]
-	excludesfile = /Users/jose/.gitignore_global
+	excludesfile = /home/jose/.gitignore_global
 [diff]
 	submodule = log
 	tool = icdiff
