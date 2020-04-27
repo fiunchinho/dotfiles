@@ -66,6 +66,11 @@ if ! dpkg -s slack-desktop; then
   rm slack-desktop-*.deb
 fi
 
+# Kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
 # Go libraries
 GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
 GO111MODULE="on" go get github.com/giantswarm/luigi
