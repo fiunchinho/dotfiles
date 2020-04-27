@@ -19,9 +19,10 @@
         dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
         # List contributors with number of commits
-        contributors = shortlog --summary --numbered
+	contributors = shortlog --summary --numbered
+	gone = "!git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
 [core]
-	excludesfile = /Users/jose.armesto/.gitignore_global
+	excludesfile = /Users/jose/.gitignore_global
 [diff]
 	submodule = log
 	tool = icdiff
@@ -39,7 +40,7 @@
 	followTags = true
 [status]
 	showUntrackedFiles = all
-[url "git@github.schibsted.io:"]
-	insteadOf = sch:
 [rebase]
 	autosquash = true
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
