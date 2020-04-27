@@ -2,7 +2,7 @@
 
 # Tools
 sudo apt update
-sudo apt install -y vim wget curl make xclip htop jq resolvconf htop autojump fzf build-essential zsh shellcheck vlc
+sudo apt install -y vim wget curl make xclip htop jq resolvconf htop autojump fzf build-essential zsh shellcheck vlc bat
 
 # Go
 if test ! -d /usr/local/go; then
@@ -74,6 +74,14 @@ GO111MODULE="on" go get github.com/giantswarm/gsctl
 GO111MODULE="on" go get github.com/giantswarm/devctl
 
 # IntelliJ
-curl -O https://download.jetbrains.com/idea/ideaIU-2020.1.tar.gz
-sudo tar -xzf ideaIU.tar.gz -C /opt
-rm ideaIU*.tar.gz
+if ! ls /opt/idea-* 1> /dev/null 2>&1; then
+  printf "Installing IntelliJ\n"
+  curl -O https://download.jetbrains.com/idea/ideaIU-2020.1.tar.gz
+  sudo tar -xzf ideaIU.tar.gz -C /opt
+  rm ideaIU*.tar.gz
+fi
+
+# SDKMan
+if test ! -f /home/jose/.sdkman/src/sdkman-main.sh; then
+  curl -s "https://get.sdkman.io" | bash
+fi
