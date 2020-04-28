@@ -2,7 +2,7 @@
 
 # Tools
 sudo apt update
-sudo apt install -y vim wget curl make xclip htop jq resolvconf htop autojump fzf build-essential zsh shellcheck vlc bat
+sudo apt install -y vim wget curl make xclip htop jq resolvconf htop autojump fzf build-essential zsh shellcheck vlc bat openvpn
 
 # Go
 if test ! -d /usr/local/go; then
@@ -99,6 +99,17 @@ if ! dpkg -s keybase; then
   sudo apt install -y ./keybase_amd64.deb
   rm keybase_amd64.deb
   #run_keybase
+fi
+
+# kubens / kubectx
+if test ! -f /usr/local/bin/kubectx; then
+  sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+  sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+  sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+  mkdir -p ~/.oh-my-zsh/completions
+  chmod -R 755 ~/.oh-my-zsh/completions
+  ln -s /opt/kubectx/completion/kubectx.zsh ~/.oh-my-zsh/completions/_kubectx.zsh
+  ln -s /opt/kubectx/completion/kubens.zsh ~/.oh-my-zsh/completions/_kubens.zsh
 fi
 
 # Oh-my-zsh

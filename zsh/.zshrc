@@ -28,7 +28,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/php71/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$GOPATH/bin:$PATH"
-export PATH="${PATH}:${HOME}/.krew/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=1
 
 source $ZSH/oh-my-zsh.sh
@@ -104,6 +104,9 @@ alias k="kubectl"
 alias ccat="/usr/bin/cat"
 alias kns="k ns"
 alias kctx="k ctx"
+
+# kubens and kubectx completions don't work without this
+autoload -U compinit && compinit
 
 export HISTFILE=~/.zsh_history  # ensure history file visibility
 export HH_CONFIG=hicolor        # get more colors
