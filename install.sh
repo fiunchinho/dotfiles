@@ -112,6 +112,11 @@ if test ! -f /usr/local/bin/kubectx; then
   ln -s /opt/kubectx/completion/kubens.zsh ~/.oh-my-zsh/completions/_kubens.zsh
 fi
 
+# pre-commit
+if test ! -f $HOME/bin/pre-commit; then
+  curl https://pre-commit.com/install-local.py | python3 -
+fi
+
 # Oh-my-zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   printf "Installing ohmyzsh\n"
