@@ -101,6 +101,14 @@ if ! dpkg -s keybase; then
   #run_keybase
 fi
 
+# Sublime Text
+if ! dpkg -s sublime-text; then
+  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+  sudo apt-get update
+  sudo apt-get install sublime-text
+fi
+
 # kubens / kubectx
 if test ! -f /usr/local/bin/kubectx; then
   sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
