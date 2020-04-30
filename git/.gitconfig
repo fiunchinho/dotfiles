@@ -19,10 +19,13 @@
         dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
         # List contributors with number of commits
-	contributors = shortlog --summary --numbered
-	gone = "!git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
+        contributors = shortlog --summary --numbered
+
+        # Remove branches that have been removed upstream
+        gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
 [core]
-	excludesfile = /home/jose/.gitignore_global
+        excludesfile = /home/jose/.gitignore_global
+        editor = vim
 [diff]
 	submodule = log
 	tool = icdiff
@@ -41,6 +44,9 @@
 [status]
 	showUntrackedFiles = all
 [rebase]
-	autosquash = true
+        autosquash = true
+        autoStash = true
+[pull]
+        rebase = true
 [url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
+        insteadOf = https://github.com/
