@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Tools
+printf "Updating repositories and installing basic tools\n"
 sudo apt update
 sudo apt install -y vim wget curl make xclip htop jq resolvconf htop autojump fzf build-essential zsh shellcheck vlc bat openvpn
 
@@ -24,7 +25,7 @@ fi
 # Docker
 if test ! -f /usr/bin/docker; then
   printf "Installing Docker\n"
-  sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+  sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu eoan stable"
   sudo apt update
@@ -68,17 +69,19 @@ fi
 
 # Kubectl
 if test ! -f /usr/local/bin/kubectl; then
-  curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   chmod +x ./kubectl
   sudo mv ./kubectl /usr/local/bin/kubectl
 fi
 
 # Go libraries
-GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
+export GOPRIVATE="github.com/giantswarm/opsctl"
+GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.0
 GO111MODULE="on" go get github.com/giantswarm/luigi
 GO111MODULE="on" go get github.com/giantswarm/architect
 GO111MODULE="on" go get github.com/giantswarm/gsctl
 GO111MODULE="on" go get github.com/giantswarm/devctl
+env GIT_TERMINAL_PROMPT=1 GO111MODULE="on" go get github.com/giantswarm/opsctl
 
 # IntelliJ
 if ! ls /opt/idea-* 1> /dev/null 2>&1; then
