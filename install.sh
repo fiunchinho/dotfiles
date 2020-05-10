@@ -64,6 +64,7 @@ if ! find /etc/apt/ -name "*.list" | xargs cat | grep "telegram"; then
   sudo add-apt-repository -y ppa:atareao/telegram
   sudo apt update
   sudo apt install -y telegram
+  sudo chown -R "${USER}":"${USER}" /opt/telegram
 fi
 
 # Slack
@@ -95,6 +96,7 @@ if ! ls /opt/idea-* 1> /dev/null 2>&1; then
   printf "Installing IntelliJ\n"
   wget https://download.jetbrains.com/idea/ideaIU-2020.1.tar.gz
   sudo tar -xzf ideaIU*.tar.gz -C /opt
+  sudo chown -R "${USER}":"${USER}" /opt/idea-IU*
   rm ideaIU*.tar.gz
 fi
 
