@@ -44,14 +44,14 @@ if test ! -f /usr/bin/docker; then
 fi
 
 # Chrome
-if ! dpkg -s google-chrome-stable; then
+if ! dpkg -s google-chrome-stable > /dev/null; then
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo dpkg -i google-chrome-stable_current_amd64.deb
   rm google-chrome-stable_current_amd64.deb
 fi
 
 # Spotify
-if ! find /etc/apt/ -name "*.list" | xargs cat | grep "spotify"; then
+if ! find /etc/apt/ -name "*.list" | xargs cat | grep "spotify" > /dev/null; then
   printf "Installing Spotify\n"
   curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
   echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
@@ -60,7 +60,7 @@ if ! find /etc/apt/ -name "*.list" | xargs cat | grep "spotify"; then
 fi
 
 # Telegram
-if ! find /etc/apt/ -name "*.list" | xargs cat | grep "telegram"; then
+if ! find /etc/apt/ -name "*.list" | xargs cat | grep "telegram" > /dev/null; then
   printf "Installing Telegram\n"
   sudo add-apt-repository -y ppa:atareao/telegram
   sudo apt update
@@ -69,7 +69,7 @@ if ! find /etc/apt/ -name "*.list" | xargs cat | grep "telegram"; then
 fi
 
 # Slack
-if ! dpkg -s slack-desktop; then
+if ! dpkg -s slack-desktop > /dev/null; then
   printf "Installing Slack\n"
   wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.2-amd64.deb
   sudo apt install -y ./slack-desktop-*.deb
@@ -108,7 +108,7 @@ if test ! -f /home/jose/.sdkman/src/sdkman-main.sh; then
 fi
 
 # Keybase
-if ! dpkg -s keybase; then
+if ! dpkg -s keybase > /dev/null; then
   curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
   sudo apt install -y ./keybase_amd64.deb
   rm keybase_amd64.deb
@@ -116,7 +116,7 @@ if ! dpkg -s keybase; then
 fi
 
 # Sublime Text
-if ! dpkg -s sublime-text; then
+if ! dpkg -s sublime-text > /dev/null; then
   wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
   echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
   sudo apt-get update
