@@ -1,5 +1,9 @@
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_PREFIX="["
+KUBE_PS1_SUFFIX="]"
+
 PROMPT='%{$fg_bold[blue]%}%* %(?:%{$fg_bold[green]%}%2~% :%{$fg_bold[red]%}%2~% )%{$reset_color%}$(git_prompt_info) % %{$reset_color%}'
-RPROMPT=''
+RPROMPT='$(kube_ps1)'
 
 # git theming
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[blue]%}[%{$reset_color%}%{$fg_bold[red]%}"

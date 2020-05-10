@@ -33,7 +33,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export ZSH_PLUGINS_ALIAS_TIPS_REVEAL=1
 
 source $ZSH/oh-my-zsh.sh
-#source "${HOME}/.iterm2_shell_integration.zsh"
+source ${ZSH_CUSTOM}/plugins/kube-ps1/kube-ps1.sh
 
 # https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
 setopt interactivecomments
