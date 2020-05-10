@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
+        # Please adapt and uncomment the following lines:
 	name = Jose Armesto
 	email = github@armesto.net
 	signingkey = XXX
@@ -24,7 +24,7 @@
         # Remove branches that have been removed upstream
         gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
 [core]
-        excludesfile = /home/jose/.gitignore_global
+        excludesfile = ~/.gitignore_global
         editor = vim
 [diff]
         submodule = log

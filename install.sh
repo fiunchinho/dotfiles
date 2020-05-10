@@ -124,12 +124,12 @@ if test ! -f /usr/local/bin/kubectx; then
 fi
 
 # pre-commit
-if test ! -f $HOME/bin/pre-commit; then
+if test ! -f ~/bin/pre-commit; then
   curl https://pre-commit.com/install-local.py | python3 -
 fi
 
 # Oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
+if [ ! -d "~/.oh-my-zsh" ]; then
   printf "Installing ohmyzsh\n"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
