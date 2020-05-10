@@ -37,6 +37,8 @@
         prune = true
 [commit]
         gpgsign = true
+[init]
+        templatedir = ~/.git_template
 [merge]
         ff = only
 [push]

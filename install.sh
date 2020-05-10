@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Git config
+if test ! -f ~/.gitignore_global; then
+  cp git/.gitconfig ~/.gitconfig
+  cp git/.gitignore_global ~/.gitignore_global
+  cp -R git/.git_template ~/.git_template
+fi
+
 # Tools
 printf "Updating repositories and installing basic tools\n"
 sudo apt update
