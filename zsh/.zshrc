@@ -102,6 +102,7 @@ helmswitch () {
 }
 
 alias k="kubectl"
+alias cat="/usr/bin/batcat"
 alias ccat="/usr/bin/cat"
 alias kns="k ns"
 alias kctx="k ctx"
