@@ -84,14 +84,12 @@ if test ! -f /usr/local/bin/kubectl; then
 fi
 
 # Go libraries
-export GOPRIVATE="github.com/giantswarm/opsctl"
 GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.0
 GO111MODULE="on" go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.26.0
 GO111MODULE="on" go get github.com/giantswarm/luigi
 GO111MODULE="on" go get github.com/giantswarm/architect
 GO111MODULE="on" go get github.com/giantswarm/gsctl
 GO111MODULE="on" go get github.com/giantswarm/devctl
-env GIT_TERMINAL_PROMPT=1 GO111MODULE="on" go get github.com/giantswarm/opsctl
 
 # IntelliJ
 if ! ls /opt/idea-* 1> /dev/null 2>&1; then
