@@ -139,7 +139,7 @@ if test ! -f ~/bin/pre-commit; then
 fi
 
 # Oh-my-zsh
-if [ ! -d "~/.oh-my-zsh" ]; then
+if [ ! -d ~/.oh-my-zsh ]; then
   printf "Installing ohmyzsh\n"
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
