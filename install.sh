@@ -85,6 +85,7 @@ fi
 # Go libraries
 export GOPRIVATE="github.com/giantswarm/opsctl"
 GO111MODULE="on" go get sigs.k8s.io/kind@v0.8.0
+GO111MODULE="on" go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.26.0
 GO111MODULE="on" go get github.com/giantswarm/luigi
 GO111MODULE="on" go get github.com/giantswarm/architect
 GO111MODULE="on" go get github.com/giantswarm/gsctl
