@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Git config
 if test ! -f ~/.gitignore_global; then
